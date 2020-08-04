@@ -57,8 +57,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |      |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |   !  |   @  |   #  |   $  |   %  |-------.    ,-------|   ^  |   &  |   *  |      |      |      |
- * |------+------+------+------+------+------|   (   |    |   )   |------+------+------+------+------+------|
+ * |      |   !  |   @  |   #  |   $  |   %  |-------.    ,-------|   ^  |   &  |   *  |   (  |   )  |      |
+ * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
  * |      |   '  |   `  |   -  |   =  |   \  |-------|    |-------|   "  |   ~  |   _  |   +  |   |  |      |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
  *                   | LCtrl| LGUI |LOWER | / Space /       \ Enter\  |RAISE |BackSP| LAlt |
@@ -68,8 +68,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_LOWER] = LAYOUT( \
   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
   XXXXXXX, KC_1   , KC_2   , KC_3   , KC_4   , KC_5   ,                   KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , XXXXXXX, \
-  XXXXXXX, KC_EXLM, KC_AT  , KC_HASH, KC_DLR , KC_PERC,                   KC_CIRC, KC_AMPR, KC_ASTR, XXXXXXX, XXXXXXX, XXXXXXX, \
-  XXXXXXX, KC_QUOT, KC_GRV , KC_MINS, KC_EQL , KC_BSLS, KC_LPRN, KC_RPRN, KC_DQT , KC_TILD, KC_UNDS, KC_PLUS, KC_PIPE, XXXXXXX, \
+  XXXXXXX, KC_EXLM, KC_AT  , KC_HASH, KC_DLR , KC_PERC,                   KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, XXXXXXX, \
+  XXXXXXX, KC_QUOT, KC_GRV , KC_MINS, KC_EQL , KC_BSLS, XXXXXXX, XXXXXXX, KC_DQT , KC_TILD, KC_UNDS, KC_PLUS, KC_PIPE, XXXXXXX, \
                              _______, _______, _______, _______, _______,  _______, _______, _______\
 ),
 /* RAISE
