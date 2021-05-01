@@ -1,3 +1,5 @@
+// install commands
+// sudo make lily58:basd4g:avrdude
 #include QMK_KEYBOARD_H
 
 #ifdef PROTOCOL_LUFA
@@ -20,7 +22,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* QWERTY
  * ,-----------------------------------------.                    ,-----------------------------------------.
- * |      |      |      |      |      |      |                    |      |      |      |      |      |      |
+ * |Space |Ctrl+1|Ctrl+2|Ctrl+3|Ctrl+4|Ctrl+5|                    |Ctrl+6|Ctrl+7|Ctrl+8|Ctrl+9|Ctrl+0|      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * | Tab  |   Q  |   W  |   E  |   R  |   T  |                    |   Y  |   U  |   I  |   O  |   P  |  \   |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
@@ -37,22 +39,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 
  [_QWERTY] = LAYOUT( \
-  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  \
-  KC_TAB,   KC_Q,   KC_W,    KC_E,    KC_R,    KC_T,                     KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS,  \
-  CTL_T(KC_ESC), KC_A, KC_S, KC_D,    KC_F,    KC_G,                     KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,  \
-  CMD_T(KC_F16), KC_Z, KC_X, KC_C,    KC_V,    KC_B, XXXXXXX,  XXXXXXX,  KC_N,    KC_M, KC_COMM, KC_DOT, KC_SLSH, OPT_T(KC_F17),\
-                  LCTL(KC_LEFT), KC_LGUI, MO(_LOWER), SFT_T(KC_SPC), CTL_T(KC_ENT), MO(_RAISE), KC_BSPC, LCTL(KC_RGHT)\
+  KC_SPC,        LCTL(KC_1), LCTL(KC_2), LCTL(KC_3), LCTL(KC_4), LCTL(KC_5),                               LCTL(KC_6), LCTL(KC_7), LCTL(KC_8), LCTL(KC_9), LCTL(KC_0), XXXXXXX, \
+  KC_TAB,        KC_Q      , KC_W,       KC_E,       KC_R,       KC_T,                                     KC_Y,       KC_U,       KC_I,       KC_O,       KC_P,       KC_BSLS,  \
+  CTL_T(KC_ESC), KC_A      , KC_S,       KC_D,       KC_F,       KC_G,                                     KC_H,       KC_J,       KC_K,       KC_L,       KC_SCLN,    KC_QUOT,  \
+  CMD_T(KC_F16), KC_Z      , KC_X,       KC_C,       KC_V,       KC_B,       XXXXXXX,       XXXXXXX,       KC_N,       KC_M,       KC_COMM,    KC_DOT,     KC_SLSH,    OPT_T(KC_F17),\
+                                         LCTL(KC_LEFT), KC_LGUI, MO(_LOWER), SFT_T(KC_SPC), CTL_T(KC_ENT), MO(_RAISE), KC_BSPC, LCTL(KC_RGHT)\
 ),
 
 /* LOWER
  * ,-----------------------------------------.                    ,-----------------------------------------.
- * |      |      |      |      |      |      |                    |      |      |      |      |      |      |
+ * |Space |Ctrl+1|Ctrl+2|Ctrl+3|Ctrl+4|Ctrl+5|                    |Ctrl+6|Ctrl+7|Ctrl+8|Ctrl+9|Ctrl+0|      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |      |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  |   ~  |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |      |   !  |   @  |   #  |   $  |   %  |-------.    ,-------|   ^  |   &  |   *  |   (  |   )  |   `  |
  * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
- * |      |   _  |   +  |   -  |   =  |      |-------|    |-------|   [  |   ]  |   {  |   }  |      |      |
+ * |      |   _  |   +  |   -  |   =  |emoji |-------|    |-------|   [  |   ]  |   {  |   }  |      |      |
  * `-----------------------------------------/ Shift /     \ Ctrl \-----------------------------------------'
  *                   | LCTL+| LGUI |LOWER | / Space /       \ Enter\  |RAISE |BackSP| LCTL+|
  *                   | LEFT |      |      |/       /         \      \ |      |      | RIGHT|
@@ -62,18 +64,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______, _______, _______, _______, _______, _______,                   _______, _______, _______, _______, _______, _______, \
   _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                      KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_TILD, \
   _______, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                   KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_GRV,  \
-  _______, KC_UNDS, KC_PLUS, KC_MINS, KC_EQL,  XXXXXXX, _______, _______, KC_LBRC, KC_RBRC, KC_LCBR, KC_RCBR, XXXXXXX, _______, \
+  _______, KC_UNDS, KC_PLUS, KC_MINS, KC_EQL,  LCTL(LGUI(KC_SPACE)), _______, _______, KC_LBRC, KC_RBRC, KC_LCBR, KC_RCBR, XXXXXXX, _______, \
                              _______, _______, _______, _______, _______, _______, KC_DEL,  _______\
 ),
 /* RAISE
  * ,-----------------------------------------.                    ,-----------------------------------------.
- * |      |      |      |      |      |      |                    |      |      |      |      |      |      |
+ * |Space |Ctrl+1|Ctrl+2|Ctrl+3|Ctrl+4|Ctrl+5|                    |Ctrl+6|Ctrl+7|Ctrl+8|Ctrl+9|Ctrl+0|      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |                    |  F7  |  F8  |  F9  | F10  | F11  | F12  |
+ * |      |  F1  |  F2  |  F3  |  F4  |  F5  |                    |  F6  |  F7  |  F8  |  F9  | F10  |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |-------.    ,-------|      | Left | Down |  Up  |Right |      |
- * |------+------+------+------+------+------|   [   |    |    ]  |------+------+------+------+------+------|
- * |  F7  |  F8  |  F9  | F10  | F11  | F12  |-------|    |-------|   +  |   -  |   =  |   [  |   ]  |   \  |
+ * |      |  F11 |  F12 |      |      |      |-------.    ,-------|      | Left | Down |  Up  |Right |      |
+ * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
+ * |      |      |      |      |      |      |-------|    |-------|      |      |      |      |      |      |
  * `-----------------------------------------/ Shift /     \ Ctrl \-----------------------------------------'
  *                   | LCTL+| LGUI |LOWER | / Space /       \ Enter\  |RAISE |BackSP| LCTL+|
  *                   | LEFT |      |      |/       /         \      \ |      |      | RIGHT|
