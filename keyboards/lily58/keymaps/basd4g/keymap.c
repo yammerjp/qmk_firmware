@@ -14,8 +14,9 @@ extern uint8_t is_master;
 
 enum layer_number {
   _QWERTY = 0,
-  _LOWER,
-  _RAISE,
+  _SIGN,
+  _VIM,
+  _VIM_SIGN,
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -33,7 +34,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       F16 |   Z  |   X  |   C  |   V  |   B  |-------|    |-------|   N  |   M  |   ,  |   .  |   /  |LALT
                                                                                                         F17 |
  * `-----------------------------------------/ Shift /     \ Ctrl \-----------------------------------------'
- *                   | LCTL+| LGUI |LOWER | / Space /       \ Enter\  |RAISE |BackSP| LCTL+|
+ *                   | LCTL+| LGUI |SIGN  | / Space /       \ Enter\  |VIM   |BackSP| LCTL+|
  *                   | LEFT |      |      |/       /         \      \ |      |      | RIGHT|
  *                   `----------------------------'           '------''--------------------'
  */
@@ -43,10 +44,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TAB,        KC_Q      , KC_W,       KC_E,       KC_R,       KC_T,                                     KC_Y,       KC_U,       KC_I,       KC_O,       KC_P,       KC_BSLS,  \
   CTL_T(KC_ESC), KC_A      , KC_S,       KC_D,       KC_F,       KC_G,                                     KC_H,       KC_J,       KC_K,       KC_L,       KC_SCLN,    KC_QUOT,  \
   CMD_T(KC_F16), KC_Z      , KC_X,       KC_C,       KC_V,       KC_B,       XXXXXXX,       XXXXXXX,       KC_N,       KC_M,       KC_COMM,    KC_DOT,     KC_SLSH,    OPT_T(KC_F17),\
-                                         LCTL(KC_LEFT), KC_LGUI, MO(_LOWER), SFT_T(KC_SPC), CTL_T(KC_ENT), MO(_RAISE), KC_BSPC, LCTL(KC_RGHT)\
+                                         LCTL(KC_LEFT), KC_LGUI, MO(_SIGN), SFT_T(KC_SPC), CTL_T(KC_ENT), MO(_VIM), KC_BSPC, LCTL(KC_RGHT)\
 ),
 
-/* LOWER
+/* SIGN
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * |Space |Ctrl+1|Ctrl+2|Ctrl+3|Ctrl+4|Ctrl+5|                    |Ctrl+6|Ctrl+7|Ctrl+8|Ctrl+9|Ctrl+0|      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
@@ -56,18 +57,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
  * |      |   _  |   +  |   -  |   =  |emoji |-------|    |-------|   [  |   ]  |   {  |   }  |      |      |
  * `-----------------------------------------/ Shift /     \ Ctrl \-----------------------------------------'
- *                   | LCTL+| LGUI |LOWER | / Space /       \ Enter\  |RAISE |BackSP| LCTL+|
+ *                   | LCTL+| LGUI |SIGN  | / Space /       \ Enter\  |VIM   |BackSP| LCTL+|
  *                   | LEFT |      |      |/       /         \      \ |      |      | RIGHT|
  *                   `----------------------------'           '------''--------------------'
  */
-[_LOWER] = LAYOUT( \
+[_SIGN] = LAYOUT( \
   _______, _______, _______, _______, _______, _______,                   _______, _______, _______, _______, _______, _______, \
   _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                      KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_TILD, \
   _______, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                   KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_GRV,  \
   _______, KC_UNDS, KC_PLUS, KC_MINS, KC_EQL,  LCTL(LGUI(KC_SPACE)), _______, _______, KC_LBRC, KC_RBRC, KC_LCBR, KC_RCBR, XXXXXXX, _______, \
-                             _______, _______, _______, _______, _______, _______, KC_DEL,  _______\
+                             _______, _______, _______, _______, _______, MO(_VIM_SIGN), KC_DEL,  _______\
 ),
-/* RAISE
+
+/* VIM  
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * |Space |Ctrl+1|Ctrl+2|Ctrl+3|Ctrl+4|Ctrl+5|                    |Ctrl+6|Ctrl+7|Ctrl+8|Ctrl+9|Ctrl+0|      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
@@ -77,17 +79,38 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
  * |      |      |      |      |      |      |-------|    |-------|      |      |      |      |      |      |
  * `-----------------------------------------/ Shift /     \ Ctrl \-----------------------------------------'
- *                   | LCTL+| LGUI |LOWER | / Space /       \ Enter\  |RAISE |BackSP| LCTL+|
+ *                   | LCTL+| LGUI |SIGN  | / Space /       \ Enter\  |VIM   |BackSP| LCTL+|
  *                   | LEFT |      |      |/       /         \      \ |      |      | RIGHT|
  *                   `----------------------------'           '------''--------------------'
  */
+[_VIM] = LAYOUT( \
+  _______, _______, _______, _______, _______, _______,                   _______, _______, _______, _______, _______, _______, \
+  _______, XXXXXXX, LOPT(KC_RIGHT), XXXXXXX, XXXXXXX, XXXXXXX,            XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
+  _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, LGUI(KC_UP),                   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX, XXXXXXX, \
+  _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, LOPT(KC_LEFT),XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, \
+                             XXXXXXX, XXXXXXX, MO(_VIM_SIGN), XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX \
+),
 
-[_RAISE] = LAYOUT( \
+/* VIM_SIGN
+ * ,-----------------------------------------.                    ,-----------------------------------------.
+ * |Space |Ctrl+1|Ctrl+2|Ctrl+3|Ctrl+4|Ctrl+5|                    |Ctrl+6|Ctrl+7|Ctrl+8|Ctrl+9|Ctrl+0|      |
+ * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
+ * |      |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  |   ~  |
+ * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
+ * |      |   !  |   @  |   #  |Ctrl+e|   %  |-------.    ,-------|Ctrl+a|   &  |   *  |   (  |   )  |   `  |
+ * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
+ * |      |   _  |   +  |   -  |   =  |emoji |-------|    |-------|   [  |   ]  |   {  |   }  |      |      |
+ * `-----------------------------------------/ Shift /     \ Ctrl \-----------------------------------------'
+ *                   | LCTL+| LGUI |SIGN  | / Space /       \ Enter\  |VIM   |BackSP| LCTL+|
+ *                   | LEFT |      |      |/       /         \      \ |      |      | RIGHT|
+ *                   `----------------------------'           '------''--------------------'
+ */
+[_VIM_SIGN] = LAYOUT( \
   _______, _______, _______, _______, _______, _______,                   _______, _______, _______, _______, _______, _______, \
   _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                     KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  _______, \
-  _______, KC_F11,  KC_F12,  XXXXXXX, XXXXXXX, XXXXXXX,                   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX, XXXXXXX, \
-  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
-                             XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX \
+  _______, KC_F11,  KC_F12,  _______, LCTL(KC_E), _______,             LCTL(KC_A), _______, _______, _______, _______, _______, \
+  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+                             _______, _______, _______, _______, _______, _______, _______, _______\
 )
 };
 
